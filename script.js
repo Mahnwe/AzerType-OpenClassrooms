@@ -1,36 +1,44 @@
 const listeMots = ["Cachalot", "Pétunia", "Serviette"]
+const listePhrases = ["Pas de panique !", "La vie, l’univers et le reste", "Merci pour le poisson"]
 let score = 0;
-let motUtilisateur = prompt("Entrez un mot :" + listeMots[0])
+const choixMots = "mots"
+const choixPhrases = "phrases"
 
-if(motUtilisateur === listeMots[0])
+let choixUtilisateur = prompt("Choisissez entre : "+choixMots+ "Ou : "+choixPhrases)
+while(choixUtilisateur !== choixMots && choixUtilisateur !== choixPhrases)
 {
-    console.log("Bravo vous avez gagné !")
-    score++
-    console.log("Score : " + score)
-} else {
-    console.log("Dommage ce n'est pas le bon mot")
+    choixUtilisateur = prompt("Choisissez entre : "+choixMots+ " " +"ou : "+choixPhrases)
 }
 
-motUtilisateur = prompt("Entrez un mot :" + listeMots[1])
-
-if(motUtilisateur === listeMots[1])
+if(choixUtilisateur === choixMots)
 {
-    console.log("Bravo vous avez gagné !")
-    score++
-    console.log("Score : " + score)
-} else {
-    console.log("Dommage ce n'est pas le bon mot")
+    for (let i=0; i < listeMots.length; i++)
+    {
+        let motUtilisateur = prompt("Entrez un mot :" + listeMots[i])
+        if(motUtilisateur === listeMots[i])
+    {
+        console.log("Bravo vous avez gagné !")
+        score++
+    } else {
+        console.log("Dommage ce n'est pas le bon mot")
+    }
+    }
+    console.log("Score final : " + score+ " sur "+ listeMots.length)
+} 
+
+else
+{
+        for (let i=0; i < listePhrases.length; i++)
+    {
+        let motUtilisateur = prompt("Entrez une phrase :" + listePhrases[i])
+        if(motUtilisateur === listePhrases[i])
+    {
+        console.log("Bravo vous avez gagné !")
+        score++
+    } else {
+        console.log("Dommage ce n'est pas la bonne phrase")
+    }
+    }
+    console.log("Score final : " + score+ " sur "+ listePhrases.length)
 }
 
-motUtilisateur = prompt("Entrez un mot :" + listeMots[2])
-
-if(motUtilisateur === listeMots[2])
-{
-    console.log("Bravo vous avez gagné !")
-    score++
-    console.log("Score : " + score)
-} else {
-    console.log("Dommage ce n'est pas le bon mot")
-}
-
-console.log("Score final : " + score)
