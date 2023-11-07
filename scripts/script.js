@@ -138,6 +138,29 @@ function lancerJeu() {
         }
     })
 
+    inputEcriture.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            if (inputEcriture.value === listeProposition[i]) {
+                score++
+            }
+            i++
+            afficherResultat(score, i)
+            inputEcriture.value = ''
+            if (listeProposition[i] === undefined) {
+                afficherProposition("Le jeu est fini")
+                // On désactive le bouton valider
+                btnValiderMot.disabled = true
+                // On désactive les boutons radios
+                for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
+                    listeBtnRadio[indexBtnRadio].disabled = true
+                }
+    
+            } else {
+                afficherProposition(listeProposition[i])
+            }
+        }
+    });
+
     // Gestion de l'événement change sur les boutons radios. 
     
     for (let index = 0; index < listeBtnRadio.length; index++) {
