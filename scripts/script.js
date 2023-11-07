@@ -119,7 +119,12 @@ function lancerJeu() {
     // Gestion de l'événement click sur le bouton "valider"
     btnValiderMot.addEventListener("click", () => {
         if (inputEcriture.value === listeProposition[i]) {
+            let labelResultat = document.getElementById("labelResultat")
+            labelResultat.textContent = 'Bravo !'
             score++
+        } else {
+            let labelResultat = document.getElementById("labelResultat")
+            labelResultat.textContent = 'Raté !'
         }
         i++
         afficherResultat(score, i)
@@ -141,7 +146,12 @@ function lancerJeu() {
     inputEcriture.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             if (inputEcriture.value === listeProposition[i]) {
+                let labelResultat = document.getElementById("labelResultat")
+                labelResultat.textContent = 'Bravo !'
                 score++
+            } else {
+                let labelResultat = document.getElementById("labelResultat")
+                labelResultat.textContent = 'Raté !'
             }
             i++
             afficherResultat(score, i)
