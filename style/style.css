@@ -12,10 +12,10 @@
  */
 
 body {
-    --color-primary: #1E90FF;
-    --color-secondary: #00BFFF;
+    --color-primary: #1880e8;
+    --color-secondary: #01aae2;
     --color-tertiary: #F0F8FF;
-    background-color: #F5FFFA;    
+    background-color: rgb(14, 13, 13);    
 }
 
 /* Mise en forme des titres */
@@ -182,7 +182,7 @@ footer {
     width: 20%;
 }
 
-.zoneResultat p {
+.zoneResultat label {
     background-color: #00BFFF;
     border: none;
     -webkit-text-fill-color: white;
