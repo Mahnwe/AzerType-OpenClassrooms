@@ -1,4 +1,4 @@
-let inputJoueur = document.getElementById("inputEcriture")
+/*let inputJoueur = document.getElementById("inputEcriture")
 console.log(inputJoueur)
 let boutonValider = document.getElementById("btnValiderMot")
 console.log(boutonValider)
@@ -7,5 +7,5 @@ console.log(zoneProposition)
 let zoneScoreSpan = document.querySelector(".zoneScore span")
 console.log(zoneScoreSpan)
 let listRadioButton = document.querySelectorAll(".optionSource input")
-console.log(listRadioButton)
+console.log(listRadioButton)*/
 lancerJeu()
