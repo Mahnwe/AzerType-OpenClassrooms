@@ -146,10 +146,12 @@ footer {
 
 /* Zone d'options */
 .optionSource {
+    font-family: 'Roboto', sans-serif;
     margin: 20px;
 }
 
 .optionSource input[type='radio']:not(:first-child) {
+    font-family: 'Roboto', sans-serif;
     margin-left: 20px;
 }
 
@@ -163,6 +165,7 @@ footer {
     padding: 20px;
     border-radius: 20px;
     background-color: white;
+    font-family: 'Roboto', sans-serif;
     font-size: 30px;
     font-weight: 600;
     color: var(--color-primary);
@@ -172,6 +175,7 @@ footer {
 .zoneSaisie {
     display: flex;
     justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     margin-bottom: 20px;
 }
@@ -187,6 +191,7 @@ footer {
 
 .zoneResultat label {
     background-color: #01aae2;
+    font-family: 'Roboto', sans-serif;
     border: none;
     -webkit-text-fill-color: white;
     font-size: 25px;
@@ -194,6 +199,7 @@ footer {
 
 .zoneScore {
     margin: 30px 0 10px 0;
+    font-family: 'Roboto', sans-serif;
     font-size: 25px;
 }
 
@@ -214,7 +220,7 @@ footer {
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.194);
 }
 
 .popup {
@@ -230,6 +236,7 @@ footer {
     text-align: center;
     color: white;
     font-size: 17px;
+    font-family: 'Roboto', sans-serif;
     font-weight: 500;
     background-color: #1E90FF;
     border-radius: 30px;
@@ -248,6 +255,7 @@ footer {
 }
 
 .popup div {
+    font-family: 'Roboto', sans-serif;
     font-size: 25px;
     padding : 5px;
     padding-bottom: 15px;

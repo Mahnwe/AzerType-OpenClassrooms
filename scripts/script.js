@@ -129,6 +129,9 @@ function lancerJeu() {
                 inputEcriture.disabled = false
                 listeProposition = listeMots
                 inputEcriture.focus()
+                for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
+                    listeBtnRadio[indexBtnRadio].disabled = true
+                }
             } 
             if(event.target.value === "2") {
                 btnValiderMot.disabled = false
@@ -136,6 +139,9 @@ function lancerJeu() {
                 // Sinon nous voulons jouer avec la liste des phrases
                 listeProposition = listePhrases
                 inputEcriture.focus()
+                for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
+                    listeBtnRadio[indexBtnRadio].disabled = true
+                }
             }
             // Et on modifie l'affichage en direct.
             timer = startTimer()
@@ -148,10 +154,12 @@ function lancerJeu() {
         if (inputEcriture.value === listeProposition[i]) {
             let labelResultat = document.getElementById("labelResultat")
             labelResultat.textContent = 'Bravo !'
+            inputEcriture.focus()
             score++
         } else {
             let labelResultat = document.getElementById("labelResultat")
             labelResultat.textContent = 'Raté !'
+            inputEcriture.focus()
         }
         i++
         afficherResultat(score, i)
@@ -161,9 +169,9 @@ function lancerJeu() {
             stopTimer(timer)
             // On désactive le bouton valider
             btnValiderMot.disabled = true
-            // On désactive les boutons radios
+            // On réactive les boutons radios
             for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
-                listeBtnRadio[indexBtnRadio].disabled = true
+                listeBtnRadio[indexBtnRadio].disabled = false
             }
 
         } else {
@@ -189,9 +197,9 @@ function lancerJeu() {
                 stopTimer(timer)
                 // On désactive le bouton valider
                 btnValiderMot.disabled = true
-                // On désactive les boutons radios
+                // On réactive les boutons radios
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
-                    listeBtnRadio[indexBtnRadio].disabled = true
+                    listeBtnRadio[indexBtnRadio].disabled = false
                 }
             } else {
                 afficherProposition(listeProposition[i])
