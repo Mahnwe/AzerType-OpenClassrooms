@@ -8,6 +8,7 @@
     <script src="scripts/config.js" defer></script>
     <script src="scripts/popup.js" defer></script>
     <script src="scripts/script.js" defer></script>
+    <script src="scripts/timer.js" defer></script>
     <script src="scripts/main.js" defer></script>
     <link href="style/style.css" rel="stylesheet">
 </head>
@@ -24,7 +25,7 @@
         <div class="zoneOptions">
             <p>Choisissez votre option et tapez la proposition qui s'affiche dans le champ en-dessous.</p>
             <div class="optionSource">
-                <input type="radio" name="optionSource" id="mots" value="1" checked>
+                <input type="radio" name="optionSource" id="mots" value="1">
                 <label for="mots">Mots</label>
                 <input type="radio" name="optionSource" id="phrases" value="2">
                 <label for="phrases">Phrases</label>
@@ -45,6 +46,11 @@
 
         <div class="zoneScore">
             Votre score : <span>0</span>
+        </div>
+
+        <span id="timerLabel">Votre chrono</span> 
+        <div id="timerDisplay">
+        <span style="display:inline;" id="minutes"></span>:<span style="display:inline;" id="seconds"></span>
         </div>
 
         <div class="zonePartage">
