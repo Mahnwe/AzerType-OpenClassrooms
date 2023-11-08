@@ -128,12 +128,14 @@ function lancerJeu() {
                 btnValiderMot.disabled = false
                 inputEcriture.disabled = false
                 listeProposition = listeMots
+                inputEcriture.focus()
             } 
             if(event.target.value === "2") {
                 btnValiderMot.disabled = false
                 inputEcriture.disabled = false
                 // Sinon nous voulons jouer avec la liste des phrases
                 listeProposition = listePhrases
+                inputEcriture.focus()
             }
             // Et on modifie l'affichage en direct.
             timer = startTimer()
