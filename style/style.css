@@ -14,13 +14,14 @@
 body {
     --color-primary: #1880e8;
     --color-secondary: #01aae2;
-    --color-tertiary: #F0F8FF;
+    --color-tertiary: #05050584;
     background-color: rgb(14, 13, 13);    
 }
 
 /* Mise en forme des titres */
 h1 {
     margin: 10px;
+    font-family: Helvetica;
     font-size: 60px;
     font-weight: 900;
     color: var(--color-primary);
@@ -28,6 +29,7 @@ h1 {
 
 h2 {
     margin: 10px;
+    font-family: Helvetica;
     font-size: 30px;
     font-weight: 600;
     color: var(--color-secondary);
@@ -35,6 +37,7 @@ h2 {
 
 h3 {
     margin: 10px;
+    font-family: Helvetica;
     font-size: 17px;
     font-weight: 500;
     color: var(--color-secondary);
