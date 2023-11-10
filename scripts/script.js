@@ -24,10 +24,11 @@ function afficherProposition(proposition) {
  * Cette fonction construit et affiche l'email. 
  * @param {string} nom : le nom du joueur
  * @param {string} email : l'email de la personne avec qui il veut partager son score
- * @param {string} score : le score. 
+ * @param {string} score : le score.
+ * @param {string} mode : le mode de jeu 
  */
-function afficherEmail(nom, email, score) {
-    let mailto = `mailto:${email}?subject=Partage du score Azertype&body=Wassup c'est ${nom} et je viens de réaliser un score de ${score} sur le site d'Azertype ! Viens tester ce site incroyable !`
+function afficherEmail(nom, email, score, mode) {
+    let mailto = `mailto:${email}?subject=Partage du score Azertype&body=Wassup c'est ${nom} et je viens de réaliser un score de ${score} dans le mode ${mode} sur le site d'Azertype ! Viens tester ce site incroyable !`
     location.href = mailto
 }
 
@@ -83,7 +84,7 @@ function afficherMessageErreur(message) {
  * de la popup de partage et d'appeler l'affichage de l'email avec les bons paramètres.
  * @param {string} scoreEmail 
  */
-function gererFormulaire(scoreEmail) {
+function gererFormulaire(scoreEmail, mode) {
     try {
         let baliseNom = document.getElementById("nom")
         let nom = baliseNom.value
@@ -93,7 +94,7 @@ function gererFormulaire(scoreEmail) {
         let email = baliseEmail.value
         validerEmail(email)
         afficherMessageErreur("")
-        afficherEmail(nom, email, scoreEmail)
+        afficherEmail(nom, email, scoreEmail, mode)
 
     } catch(erreur) {
         afficherMessageErreur(erreur.message)
@@ -109,6 +110,7 @@ function lancerJeu() {
     let listeProposition = choixVide
     let timer = 0
     let timerDisplay = " "
+    let mode = " "
 
     let btnValiderMot = document.getElementById("btnValiderMot")
     btnValiderMot.disabled = true
@@ -128,6 +130,7 @@ function lancerJeu() {
                 btnValiderMot.disabled = false
                 inputEcriture.disabled = false
                 listeProposition = listeMots
+                mode = "'Mots'"
                 inputEcriture.focus()
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
@@ -136,8 +139,8 @@ function lancerJeu() {
             if(event.target.value === "2") {
                 btnValiderMot.disabled = false
                 inputEcriture.disabled = false
-                // Sinon nous voulons jouer avec la liste des phrases
                 listeProposition = listePhrases
+                mode = "'Phrases'"
                 inputEcriture.focus()
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
@@ -165,13 +168,14 @@ function lancerJeu() {
         afficherResultat(score, i)
         inputEcriture.value = ''
         if (listeProposition[i] === undefined) {
-            afficherProposition("Le jeu est fini")
+            afficherProposition("Partie terminée !")
             stopTimer(timer)
-            // On désactive le bouton valider
+            // On désactive le bouton valider et la zone de texte
+            inputEcriture.disabled = true
             btnValiderMot.disabled = true
             // On réactive les boutons radios
             for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
-                listeBtnRadio[indexBtnRadio].disabled = false
+                listeBtnRadio[indexBtnRadio].disabled = true
             }
 
         } else {
@@ -195,11 +199,12 @@ function lancerJeu() {
             if (listeProposition[i] === undefined) {
                 afficherProposition("Le jeu est fini")
                 stopTimer(timer)
-                // On désactive le bouton valider
+                // On désactive le bouton valider et la zone de texte
+                inputEcriture.disabled = true
                 btnValiderMot.disabled = true
                 // On réactive les boutons radios
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
-                    listeBtnRadio[indexBtnRadio].disabled = false
+                    listeBtnRadio[indexBtnRadio].disabled = true
                 }
             } else {
                 afficherProposition(listeProposition[i])
@@ -215,7 +220,7 @@ function lancerJeu() {
         let secondsLabel = document.getElementById("seconds")
         timerDisplay = " en "+minutesLabel.textContent+":"+secondsLabel.textContent+"min"
         let scoreEmail = `${score} / ${i}`+timerDisplay
-        gererFormulaire(scoreEmail)
+        gererFormulaire(scoreEmail, mode)
     })
 
     afficherResultat(score, i)
