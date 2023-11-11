@@ -111,16 +111,30 @@ function lancerJeu() {
     let timer = 0
     let timerDisplay = " "
     let mode = " "
+    let minutesLabel = document.getElementById("minutes")
+    minutesLabel.textContent = "00"
+    let secondsLabel = document.getElementById("seconds")
+    secondsLabel.textContent = "00"
+
+    let labelResultat = document.getElementById("labelResultat")
+    labelResultat.textContent = ""
 
     let btnValiderMot = document.getElementById("btnValiderMot")
     btnValiderMot.disabled = true
     let listeBtnRadio = document.querySelectorAll(".optionSource input")
+    for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
+        listeBtnRadio[indexBtnRadio].checked = false
+        listeBtnRadio[indexBtnRadio].disabled = false
+    }
     let inputEcriture = document.getElementById("inputEcriture")
     inputEcriture.disabled = true
     let boutonPartage = document.getElementById("boutonPartage")
     boutonPartage.disabled = true
     let partageForm = document.getElementById("form")
     partageForm.disabled = true
+
+    let retryButton = document.getElementById("retryButton")
+    retryButton.disabled = true
 
     afficherProposition(listeProposition[i])
 
@@ -135,6 +149,7 @@ function lancerJeu() {
                 inputEcriture.disabled = false
                 listeProposition = listeMots
                 mode = "'Mots'"
+                inputEcriture.value = ''
                 inputEcriture.focus()
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
@@ -145,6 +160,7 @@ function lancerJeu() {
                 inputEcriture.disabled = false
                 listeProposition = listePhrases
                 mode = "'Phrases'"
+                inputEcriture.value = ''
                 inputEcriture.focus()
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
@@ -159,7 +175,6 @@ function lancerJeu() {
     // Gestion de l'événement click sur le bouton "valider"
     btnValiderMot.addEventListener("click", () => {
         if (inputEcriture.value === listeProposition[i]) {
-            let labelResultat = document.getElementById("labelResultat")
             labelResultat.textContent = 'Bravo !'
             inputEcriture.focus()
             score++
@@ -177,10 +192,12 @@ function lancerJeu() {
             // On désactive le bouton valider et la zone de texte
             inputEcriture.disabled = true
             btnValiderMot.disabled = true
-            // On réactive les boutons radios
+            // On désactive les boutons radios
             for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                 listeBtnRadio[indexBtnRadio].disabled = true
             }
+            retryButton.disabled = false
+            retryButton.addEventListener("click", () => lancerJeu())
             boutonPartage.disabled = false
             partageForm.disabled = false
         } else {
@@ -191,7 +208,6 @@ function lancerJeu() {
     inputEcriture.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             if (inputEcriture.value === listeProposition[i]) {
-                let labelResultat = document.getElementById("labelResultat")
                 labelResultat.textContent = 'Bravo !'
                 score++
             } else {
@@ -207,10 +223,12 @@ function lancerJeu() {
                 // On désactive le bouton valider et la zone de texte
                 inputEcriture.disabled = true
                 btnValiderMot.disabled = true
-                // On réactive les boutons radios
+                // On désactive les boutons radios
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
                 }
+                retryButton.disabled = false
+                retryButton.addEventListener("click", () => lancerJeu())
                 boutonPartage.disabled = false
                 partageForm.disabled = false
             } else {
@@ -223,8 +241,6 @@ function lancerJeu() {
     let form = document.querySelector("form")
     form.addEventListener("submit", (event) => {
         event.preventDefault()
-        let minutesLabel = document.getElementById("minutes")
-        let secondsLabel = document.getElementById("seconds")
         timerDisplay = " en "+minutesLabel.textContent+":"+secondsLabel.textContent+"min"
         let scoreEmail = `${score} / ${i}`+timerDisplay
         gererFormulaire(scoreEmail, mode)

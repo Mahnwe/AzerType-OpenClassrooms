@@ -208,7 +208,12 @@ footer {
 }
 
 .zonePartage {
-    padding-top: 20px;
+    padding-top: 30px;
+    transform: translateX(90px);
+}
+
+.zoneRetry {
+    transform: translate(-90px, -30px);
 }
 
 /**
