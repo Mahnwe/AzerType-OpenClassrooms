@@ -149,7 +149,6 @@ function lancerJeu() {
                 inputEcriture.disabled = false
                 listeProposition = listeMots
                 mode = "'Mots'"
-                inputEcriture.value = ''
                 inputEcriture.focus()
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
@@ -160,7 +159,6 @@ function lancerJeu() {
                 inputEcriture.disabled = false
                 listeProposition = listePhrases
                 mode = "'Phrases'"
-                inputEcriture.value = ''
                 inputEcriture.focus()
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
