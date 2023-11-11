@@ -117,6 +117,10 @@ function lancerJeu() {
     let listeBtnRadio = document.querySelectorAll(".optionSource input")
     let inputEcriture = document.getElementById("inputEcriture")
     inputEcriture.disabled = true
+    let boutonPartage = document.getElementById("boutonPartage")
+    boutonPartage.disabled = true
+    let partageForm = document.getElementById("form")
+    partageForm.disabled = true
 
     afficherProposition(listeProposition[i])
 
@@ -177,7 +181,8 @@ function lancerJeu() {
             for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                 listeBtnRadio[indexBtnRadio].disabled = true
             }
-
+            boutonPartage.disabled = false
+            partageForm.disabled = false
         } else {
             afficherProposition(listeProposition[i])
         }
@@ -206,6 +211,8 @@ function lancerJeu() {
                 for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
                     listeBtnRadio[indexBtnRadio].disabled = true
                 }
+                boutonPartage.disabled = false
+                partageForm.disabled = false
             } else {
                 afficherProposition(listeProposition[i])
             }
