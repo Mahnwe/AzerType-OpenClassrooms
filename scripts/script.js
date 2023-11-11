@@ -102,13 +102,48 @@ function gererFormulaire(scoreEmail, mode) {
     
 }
 
+/**
+ *  Ces 2 fonctions gèrent les disponibilités et valeur des éléments en début et fin de partie
+ * @param {string} inputEcriture 
+ * @param {string} btnValiderMot 
+ * @param {string} listeBtnRadio
+ * @param {string} boutonPartage
+ * @param {string} partageForm
+ * @param {string} retryButton
+ */
+function endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
+{
+    // On désactive le bouton valider et la zone de texte
+    inputEcriture.disabled = true
+    btnValiderMot.disabled = true
+    // On désactive les boutons radios
+    for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
+        listeBtnRadio[indexBtnRadio].disabled = true
+    }
+    boutonPartage.disabled = false
+    partageForm.disabled = false
+    retryButton.disabled = false
+}
+
+function startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
+{
+    btnValiderMot.disabled = true
+    for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
+        listeBtnRadio[indexBtnRadio].checked = false
+        listeBtnRadio[indexBtnRadio].disabled = false
+    }
+    inputEcriture.disabled = true
+    boutonPartage.disabled = true
+    partageForm.disabled = true
+    retryButton.disabled = true
+}
+
 function lancerJeu() {
     // Initialisations
     initAddEventListenerPopup()
     let score = 0
     let i = 0
     let listeProposition = choixVide
-    let timer = 0
     let timerDisplay = " "
     let mode = " "
     let minutesLabel = document.getElementById("minutes")
@@ -120,21 +155,12 @@ function lancerJeu() {
     labelResultat.textContent = ""
 
     let btnValiderMot = document.getElementById("btnValiderMot")
-    btnValiderMot.disabled = true
     let listeBtnRadio = document.querySelectorAll(".optionSource input")
-    for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
-        listeBtnRadio[indexBtnRadio].checked = false
-        listeBtnRadio[indexBtnRadio].disabled = false
-    }
     let inputEcriture = document.getElementById("inputEcriture")
-    inputEcriture.disabled = true
     let boutonPartage = document.getElementById("boutonPartage")
-    boutonPartage.disabled = true
     let partageForm = document.getElementById("form")
-    partageForm.disabled = true
-
     let retryButton = document.getElementById("retryButton")
-    retryButton.disabled = true
+    startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
 
     afficherProposition(listeProposition[i])
 
@@ -165,7 +191,8 @@ function lancerJeu() {
                 }
             }
             // Et on modifie l'affichage en direct.
-            timer = startTimer()
+            startTimer()
+            i = 0
             afficherProposition(listeProposition[i])
         })
     }
@@ -186,18 +213,10 @@ function lancerJeu() {
         inputEcriture.value = ''
         if (listeProposition[i] === undefined) {
             afficherProposition("Partie terminée !")
-            stopTimer(timer)
-            // On désactive le bouton valider et la zone de texte
-            inputEcriture.disabled = true
-            btnValiderMot.disabled = true
-            // On désactive les boutons radios
-            for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
-                listeBtnRadio[indexBtnRadio].disabled = true
-            }
-            retryButton.disabled = false
+            labelResultat.textContent = ''
+            stopTimer()
+            endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
             retryButton.addEventListener("click", () => lancerJeu())
-            boutonPartage.disabled = false
-            partageForm.disabled = false
         } else {
             afficherProposition(listeProposition[i])
         }
@@ -216,19 +235,11 @@ function lancerJeu() {
             afficherResultat(score, i)
             inputEcriture.value = ''
             if (listeProposition[i] === undefined) {
-                afficherProposition("Le jeu est fini")
-                stopTimer(timer)
-                // On désactive le bouton valider et la zone de texte
-                inputEcriture.disabled = true
-                btnValiderMot.disabled = true
-                // On désactive les boutons radios
-                for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
-                    listeBtnRadio[indexBtnRadio].disabled = true
-                }
-                retryButton.disabled = false
+                afficherProposition("Partie terminée !")
+                labelResultat.textContent = ''
+                stopTimer()
+                endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
                 retryButton.addEventListener("click", () => lancerJeu())
-                boutonPartage.disabled = false
-                partageForm.disabled = false
             } else {
                 afficherProposition(listeProposition[i])
             }
