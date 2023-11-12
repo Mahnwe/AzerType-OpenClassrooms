@@ -248,6 +248,33 @@ function lancerJeu() {
             }
         }
     });
+ 
+        boutonScreenshot.addEventListener("click" , async () => { 
+            // getting the text content that we want to copy
+        const content = document.getElementById("body");
+    // loading the content into our clipboard
+        navigator.clipboard.writeText(content).then(() => {
+            alert("Copied the text: " + content)});
+        const data = await navigator.clipboard.read();
+        // data is an array of clipboard items
+        // the actual clipboard content is in the first element.
+        const clipboardContent = data[0]
+        // clipboardContent could be an image or text
+        try{
+            // assuming the clipboard content is an image
+            const imgBlob = await clipboardContent.getType('image/png')
+            // retrieving the url for our blob
+            const blobUrl = window.URL.createObjectURL(imageBlob);
+            // load the blob into an image tag
+            const img = document.createElement('img');
+            img.setAttribute('src', blobUrl);
+        }catch(err){
+            console.log(err);
+            // clipboard has text data
+            const text = await navigator.clipboard.readText();
+        }
+        });
+
 
     // Gestion de l'événement submit sur le formulaire de partage. 
     let form = document.querySelector("form")
