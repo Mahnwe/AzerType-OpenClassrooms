@@ -85,6 +85,17 @@ button:hover {
     cursor: pointer;
 }
 
+button[disabled]:hover {
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--color-secondary);
+    background-color: white;
+}
+
 button:focus {
     background-color: var(--color-tertiary);
     border: 3px solid var(--color-primary);
@@ -209,11 +220,15 @@ footer {
 
 .zonePartage {
     padding-top: 30px;
-    transform: translateX(90px);
+    transform: translateX(170px);
 }
 
 .zoneRetry {
-    transform: translate(-90px, -30px);
+    transform: translate(-170px, -30px);
+}
+
+.zoneScreenshot {
+    transform: translate(10px, 60px);
 }
 
 /**

@@ -110,8 +110,9 @@ function gererFormulaire(scoreEmail, mode) {
  * @param {string} boutonPartage
  * @param {string} partageForm
  * @param {string} retryButton
+ * @param {string} boutonScreenshot
  */
-function endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
+function endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
 {
     // On désactive le bouton valider et la zone de texte
     inputEcriture.disabled = true
@@ -123,9 +124,10 @@ function endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, bou
     boutonPartage.disabled = false
     partageForm.disabled = false
     retryButton.disabled = false
+    boutonScreenshot.disabled = false
 }
 
-function startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
+function startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
 {
     btnValiderMot.disabled = true
     for (let indexBtnRadio = 0; indexBtnRadio < listeBtnRadio.length; indexBtnRadio++) {
@@ -136,6 +138,7 @@ function startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, b
     boutonPartage.disabled = true
     partageForm.disabled = true
     retryButton.disabled = true
+    boutonScreenshot.disabled = true
 }
 
 function lancerJeu() {
@@ -160,10 +163,10 @@ function lancerJeu() {
     let boutonPartage = document.getElementById("boutonPartage")
     let partageForm = document.getElementById("form")
     let retryButton = document.getElementById("retryButton")
-    startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
+    let boutonScreenshot = document.getElementById("boutonScreenshot")
+    startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
 
     afficherProposition(listeProposition[i])
-
     // Gestion de l'événement change sur les boutons radios. 
     
     for (let index = 0; index < listeBtnRadio.length; index++) {
@@ -215,7 +218,7 @@ function lancerJeu() {
             afficherProposition("Partie terminée !")
             labelResultat.textContent = ''
             stopTimer()
-            endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
+            endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
             retryButton.addEventListener("click", () => lancerJeu())
         } else {
             afficherProposition(listeProposition[i])
@@ -238,7 +241,7 @@ function lancerJeu() {
                 afficherProposition("Partie terminée !")
                 labelResultat.textContent = ''
                 stopTimer()
-                endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton)
+                endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
                 retryButton.addEventListener("click", () => lancerJeu())
             } else {
                 afficherProposition(listeProposition[i])
