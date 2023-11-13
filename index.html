@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <link href="style/style.css" rel="stylesheet">
     <script src="scripts/config.js" defer></script>
     <script src="scripts/popup.js" defer></script>
     <script src="scripts/script.js" defer></script>
     <script src="scripts/timer.js" defer></script>
     <script src="scripts/main.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://cdn.tiny.cloud/1/li8oakpciasmqact17cfr5jmz4s5hg81yoa53rrzjg6mklwo/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <link href="style/style.css" rel="stylesheet">
 
 </head>
 <body id="body">
@@ -39,20 +38,8 @@
             Azerty
         </div>
 
-        <div id="inputEcriture" class="zoneSaisie" name="inputEcriture">
-            <script type="text/javascript">
-                tinymce.init({
-                  selector: '#inputEcriture',
-                  inline: true,
-                  menubar: false,
-                  statusbar: false,
-                  toolbar: false,
-                  content_css : "style/style.css",
-                });
-                </script>
-        </div>
-
         <div class="zoneSaisie">
+            <input type="text" id="inputEcriture" class="zoneSaisie" name="inputEcriture">
             <button id="btnValiderMot">Valider</button>
         </div>
 

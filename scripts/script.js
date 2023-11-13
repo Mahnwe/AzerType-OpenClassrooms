@@ -204,8 +204,8 @@ function lancerJeu() {
     btnValiderMot.addEventListener("click", () => {
         if (inputEcriture.value === listeProposition[i]) {
             labelResultat.textContent = 'Bravo !'
-            inputEcriture.focus()
             score++
+            inputEcriture.focus()
         } else {
             let labelResultat = document.getElementById("labelResultat")
             labelResultat.textContent = 'Raté !'

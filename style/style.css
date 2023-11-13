@@ -192,8 +192,14 @@ footer {
 }
 
 /* Eléments du formulaire de saisie */
-.zoneSaisie#inputEcriture {
+.zoneSaisie input[type='text'] {
     width: 80%;
+    transform: translate(0px, 10px);
+}
+
+.zoneSaisie button {
+    height: 35px;
+    transform: translate(0px, 7px);
 }
 
 .zoneSaisie button {
