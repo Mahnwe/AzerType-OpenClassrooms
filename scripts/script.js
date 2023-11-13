@@ -1,4 +1,4 @@
-/**
+/*
  * Cette fonction affiche dans la console le score de l'utilisateur
  * @param {number} score : le score de l'utilisateur
  * @param {number} nbMotsProposes : le nombre de mots proposés à l'utilisateur
@@ -141,12 +141,15 @@ function startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, b
     boutonScreenshot.disabled = true
 }
 
+
+
 function lancerJeu() {
     // Initialisations
     initAddEventListenerPopup()
     let score = 0
     let i = 0
-    let listeProposition = choixVide
+    let listeProposition
+    listeProposition = choixVide
     let timerDisplay = " "
     let mode = " "
     let minutesLabel = document.getElementById("minutes")
@@ -157,13 +160,17 @@ function lancerJeu() {
     let labelResultat = document.getElementById("labelResultat")
     labelResultat.textContent = ""
 
-    let btnValiderMot = document.getElementById("btnValiderMot")
     let listeBtnRadio = document.querySelectorAll(".optionSource input")
     let inputEcriture = document.getElementById("inputEcriture")
-    let boutonPartage = document.getElementById("boutonPartage")
-    let partageForm = document.getElementById("form")
+    let btnValiderMot = document.getElementById("btnValiderMot")
+
     let retryButton = document.getElementById("retryButton")
+    retryButton.addEventListener("click", () => location.reload())
+
+    let boutonPartage = document.getElementById("boutonPartage")
     let boutonScreenshot = document.getElementById("boutonScreenshot")
+    let partageForm = document.getElementById("form")
+
     startGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
 
     afficherProposition(listeProposition[i])
@@ -195,11 +202,9 @@ function lancerJeu() {
             }
             // Et on modifie l'affichage en direct.
             startTimer()
-            i = 0
             afficherProposition(listeProposition[i])
         })
     }
-    
     // Gestion de l'événement click sur le bouton "valider"
     btnValiderMot.addEventListener("click", () => {
         if (inputEcriture.value === listeProposition[i]) {
@@ -218,8 +223,8 @@ function lancerJeu() {
             afficherProposition("Partie terminée !")
             labelResultat.textContent = ''
             stopTimer()
+            i = 0
             endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
-            retryButton.addEventListener("click", () => lancerJeu())
         } else {
             afficherProposition(listeProposition[i])
         }
@@ -241,20 +246,20 @@ function lancerJeu() {
                 afficherProposition("Partie terminée !")
                 labelResultat.textContent = ''
                 stopTimer()
+                i = 0
                 endGameDisabledHandler(inputEcriture, btnValiderMot, listeBtnRadio, boutonPartage, partageForm, retryButton, boutonScreenshot)
-                retryButton.addEventListener("click", () => lancerJeu())
+                
             } else {
                 afficherProposition(listeProposition[i])
             }
         }
     });
  
-        boutonScreenshot.addEventListener("click" , async () => { 
-            html2canvas(document.querySelector("main")).then(canvas => 
-                canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
-                );
+    boutonScreenshot.addEventListener("click" , async () => { 
+        html2canvas(document.querySelector("main")).then(canvas => 
+            canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({'image/png': blob})]))
+            );
         });
-
 
     // Gestion de l'événement submit sur le formulaire de partage. 
     let form = document.querySelector("form")
@@ -264,6 +269,6 @@ function lancerJeu() {
         let scoreEmail = `${score} / ${i}`+timerDisplay
         gererFormulaire(scoreEmail, mode)
     })
-
     afficherResultat(score, i)
+    
 }
