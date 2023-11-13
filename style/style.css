@@ -192,7 +192,7 @@ footer {
 }
 
 /* Eléments du formulaire de saisie */
-.zoneSaisie input[type='text'] {
+.zoneSaisie#inputEcriture {
     width: 80%;
 }
 
