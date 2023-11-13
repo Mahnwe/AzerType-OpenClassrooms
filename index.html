@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js"></script>
     <link href="style/style.css" rel="stylesheet">
     <script src="scripts/config.js" defer></script>
     <script src="scripts/popup.js" defer></script>
@@ -14,7 +14,7 @@
     <script src="scripts/main.js" defer></script>
 
 </head>
-<body id="body">
+<body>
     <!-- HEADER -->
     <header>
         <h1>AzerType</h1>
@@ -56,16 +56,10 @@
         <span style="display:inline;" id="minutes">00</span>:<span style="display:inline;" id="seconds">00</span>
         </div>
 
-        <div class="zoneScreenshot">
-            <button id="boutonScreenshot">Screenshot</button>
-        </div>
-
-        <div class="zonePartage">
+        <div class="zoneBoutonFin">
+            <button id="retryButton">Recommencer</button>
             <button id="boutonPartage">Partager</button>
         </div>
-        <div class="zoneRetry">
-            <button id="retryButton">Recommencer</button>
-        </div> 
         
     </main>
 
@@ -77,7 +71,11 @@
     <!-- Popup de partage -->
     <div class="popupBackground">
         <div class="popup">
-            <div>Partagez votre score</div>
+            <div>Copier la page dans le presse-papier</div>
+            <div class="zoneScreenshot">
+                <button id="boutonScreenshot">Screenshot</button>
+            </div>
+            <div>Partagez votre score par e-mail</div>
             <form novalidate id="form">
                 <label for="nom">Votre nom</label>
                 <input type="text" id="nom" name="nom" placeholder="Votre nom">

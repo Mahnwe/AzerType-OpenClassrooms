@@ -224,17 +224,16 @@ footer {
     font-size: 25px;
 }
 
-.zonePartage {
+.zoneBoutonFin {
     padding-top: 30px;
-    transform: translateX(170px);
 }
 
-.zoneRetry {
-    transform: translate(-170px, -30px);
+.zoneBoutonFin #boutonPartage {
+    transform: translate(70px, 0);
 }
 
-.zoneScreenshot {
-    transform: translate(10px, 60px);
+.zoneBoutonFin #retryButton {
+    transform: translate(-70px, 0);
 }
 
 /**
